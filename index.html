@@ -195,16 +195,19 @@
             font-size: 0.78rem; text-transform: uppercase;
             letter-spacing: 0.14em; color: var(--accent);
             font-weight: 600; margin-bottom: 0.8rem;
+            text-align: center;
         }
         .section-title {
             font-family: 'Fraunces', serif;
             font-size: clamp(1.9rem, 3.5vw, 2.8rem);
             line-height: 1.18; letter-spacing: -0.025em;
             margin-bottom: 0.8rem;
+            text-align: center;
         }
         .section-sub {
             font-size: 1.02rem; color: var(--muted);
-            max-width: 520px; margin-bottom: 3rem;
+            max-width: 520px; margin: 0 auto 3rem;
+            text-align: center;
         }
 
         .proof-bar {
@@ -273,50 +276,130 @@
         .feature-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
 
         .how-it-works { background: var(--section-alt); }
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 700px;
+
+        /* ── Interactive Steps Timeline ── */
+        .steps-timeline {
+            display: flex;
+            align-items: flex-start;
+            gap: 0;
+            max-width: 900px;
             margin: 0 auto;
+            position: relative;
         }
-        .step-hero {
-            text-align: center;
-            margin-top: 2rem;
-            padding: 2.5rem;
+        .step-card {
+            flex: 1;
             background: var(--card);
-            border: 2px solid var(--accent);
+            border: 2px solid var(--border);
             border-radius: 20px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 8px 32px rgba(226,101,62,0.1);
+            padding: 2rem 1.6rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+            position: relative;
+            z-index: 1;
         }
-        .step-hero h3 {
-            font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem;
+        .step-card:hover,
+        .step-card.active {
+            border-color: var(--accent);
+            box-shadow: 0 8px 32px rgba(226,101,62,0.14);
+            transform: translateY(-6px);
         }
-        .step-hero p { color: var(--muted); font-size: 0.93rem; }
-        .step-num-hero {
-            width: 80px !important; height: 80px !important;
-            font-size: 2.2rem !important;
-            background: var(--accent) !important;
-            color: #fff !important;
-            border: none !important;
-            margin: 0 auto 1rem;
-        }
-        .step-num {
+        .step-card.active { background: #fff; }
+        .step-badge {
             font-family: 'Fraunces', serif;
-            font-size: 3.5rem; font-weight: 700; line-height: 1;
-            margin-bottom: 0.8rem;
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 72px; height: 72px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(226,101,62,0.12), rgba(226,101,62,0.04));
-            border: 2px solid rgba(226,101,62,0.15);
-            color: var(--accent);
+            font-size: 0.78rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--muted);
+            margin-bottom: 1rem;
+            display: block;
+            transition: color 0.3s;
         }
-        .step h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 0.35rem; }
-        .step p { color: var(--muted); font-size: 0.9rem; }
+        .step-card.active .step-badge,
+        .step-card:hover .step-badge { color: var(--accent); }
+        .step-icon-wrap {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(226,101,62,0.1), rgba(226,101,62,0.04));
+            border: 2px solid rgba(226,101,62,0.15);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.2rem;
+            transition: all 0.35s ease;
+        }
+        .step-card.active .step-icon-wrap,
+        .step-card:hover .step-icon-wrap {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 4px 16px rgba(226,101,62,0.35);
+        }
+        .step-card.active .step-icon-wrap svg,
+        .step-card:hover .step-icon-wrap svg { stroke: #fff; }
+        .step-card h3 {
+            font-size: 1rem; font-weight: 700;
+            margin-bottom: 0; color: var(--ink);
+            transition: color 0.3s;
+        }
+        .step-detail {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.45s cubic-bezier(0.22,1,0.36,1), padding 0.3s;
+            color: var(--muted); font-size: 0.9rem; line-height: 1.65;
+        }
+        .step-card.active .step-detail,
+        .step-card:hover .step-detail {
+            max-height: 200px;
+            padding-top: 0.8rem;
+        }
+        .step-connector {
+            flex-shrink: 0;
+            width: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 2.5rem;
+            position: relative;
+        }
+        .step-connector::before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: repeating-linear-gradient(
+                to right,
+                var(--accent) 0, var(--accent) 6px,
+                transparent 6px, transparent 12px
+            );
+            opacity: 0.35;
+        }
+        .step-connector-arrow {
+            position: absolute;
+            right: 2px;
+            color: var(--accent);
+            opacity: 0.5;
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        @media (max-width: 768px) {
+            .steps-timeline {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+            .step-connector {
+                width: auto; height: 32px;
+                padding-top: 0;
+                align-items: center;
+                justify-content: center;
+            }
+            .step-connector::before {
+                width: 2px; height: 100%;
+                background: repeating-linear-gradient(
+                    to bottom,
+                    var(--accent) 0, var(--accent) 6px,
+                    transparent 6px, transparent 12px
+                );
+            }
+            .step-connector-arrow { display: none; }
+        }
 
         .no-fees {
             background: var(--dark-bg); color: #fff;
@@ -755,22 +838,43 @@
         <p class="section-label reveal">How It Works</p>
         <h2 class="section-title reveal">Three simple steps.</h2>
         <p class="section-sub reveal">No lengthy meetings, no jargon, no 12-page proposals. Just a simple process that gets you online fast.</p>
-        <div class="steps">
-            <div class="step reveal">
-                <div class="step-num">01</div>
+
+        <div class="steps-timeline reveal">
+            <!-- Step 1 -->
+            <div class="step-card active">
+                <span class="step-badge">Step 01</span>
+                <div class="step-icon-wrap">
+                    <svg width="26" height="26" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
                 <h3>Tell Us About Your Business</h3>
-                <p>Drop us an email with what you do, who your customers are, and what you want from your page. Photos and logos if you've got them.</p>
+                <div class="step-detail">Drop us a message with what you do, who your customers are, and what you want from your page. Photos and logos if you've got them — we'll handle everything else.</div>
             </div>
-            <div class="step reveal d1">
-                <div class="step-num">02</div>
+
+            <!-- Connector -->
+            <div class="step-connector"><span class="step-connector-arrow">›</span></div>
+
+            <!-- Step 2 -->
+            <div class="step-card">
+                <span class="step-badge">Step 02</span>
+                <div class="step-icon-wrap">
+                    <svg width="26" height="26" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                </div>
                 <h3>We Build Your Page</h3>
-                <p>We'll design and build your landing page. You'll see a draft before you know it. Want changes? No problem — tweaks are included.</p>
+                <div class="step-detail">We design and build your landing page from scratch. You'll see a draft before you know it. Want tweaks? No problem — revisions are included in every package.</div>
             </div>
-        </div>
-        <div class="step-hero reveal d2">
-            <div class="step-num step-num-hero">03</div>
-            <h3>You Go Live</h3>
-            <p>Happy with it? We hook it up to your domain and you're live. Free hosting, SSL included, everything set up and ready to go.</p>
+
+            <!-- Connector -->
+            <div class="step-connector"><span class="step-connector-arrow">›</span></div>
+
+            <!-- Step 3 -->
+            <div class="step-card">
+                <span class="step-badge">Step 03</span>
+                <div class="step-icon-wrap">
+                    <svg width="26" height="26" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+                <h3>You Go Live</h3>
+                <div class="step-detail">Happy with it? We connect it to your domain and you're live. Free hosting, SSL included — everything set up and ready to bring in customers.</div>
+            </div>
         </div>
     </div>
 </section>
@@ -1040,6 +1144,14 @@
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             document.querySelector('.nav-links').classList.remove('open');
+        });
+    });
+
+    // ── Interactive steps ──
+    document.querySelectorAll('.step-card').forEach(card => {
+        card.addEventListener('click', () => {
+            document.querySelectorAll('.step-card').forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
         });
     });
 
