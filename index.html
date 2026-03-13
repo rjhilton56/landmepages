@@ -293,18 +293,15 @@
             border-radius: 20px;
             padding: 2rem 1.6rem;
             text-align: center;
-            cursor: pointer;
             transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
             position: relative;
             z-index: 1;
         }
-        .step-card:hover,
-        .step-card.active {
+        .step-card:hover {
             border-color: var(--accent);
             box-shadow: 0 8px 32px rgba(226,101,62,0.14);
-            transform: translateY(-6px);
+            transform: translateY(-4px);
         }
-        .step-card.active { background: #fff; }
         .step-badge {
             font-family: 'Fraunces', serif;
             font-size: 0.78rem; font-weight: 700;
@@ -312,10 +309,7 @@
             color: var(--muted);
             margin-bottom: 1rem;
             display: block;
-            transition: color 0.3s;
         }
-        .step-card.active .step-badge,
-        .step-card:hover .step-badge { color: var(--accent); }
         .step-icon-wrap {
             width: 64px; height: 64px;
             border-radius: 50%;
@@ -325,28 +319,50 @@
             margin: 0 auto 1.2rem;
             transition: all 0.35s ease;
         }
-        .step-card.active .step-icon-wrap,
         .step-card:hover .step-icon-wrap {
             background: var(--accent);
             border-color: var(--accent);
             box-shadow: 0 4px 16px rgba(226,101,62,0.35);
         }
-        .step-card.active .step-icon-wrap svg,
         .step-card:hover .step-icon-wrap svg { stroke: #fff; }
         .step-card h3 {
             font-size: 1rem; font-weight: 700;
-            margin-bottom: 0; color: var(--ink);
-            transition: color 0.3s;
+            margin-bottom: 0.7rem; color: var(--ink);
         }
         .step-detail {
-            max-height: 0; overflow: hidden;
-            transition: max-height 0.45s cubic-bezier(0.22,1,0.36,1), padding 0.3s;
             color: var(--muted); font-size: 0.9rem; line-height: 1.65;
         }
-        .step-card.active .step-detail,
-        .step-card:hover .step-detail {
-            max-height: 200px;
-            padding-top: 0.8rem;
+
+        /* ── Step 03 featured treatment ── */
+        .step-card.featured {
+            background: var(--dark-bg);
+            border-color: var(--dark-bg);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(27,27,24,0.22);
+        }
+        .step-card.featured:hover {
+            transform: translateY(-14px);
+            box-shadow: 0 20px 56px rgba(27,27,24,0.28);
+            border-color: var(--accent);
+        }
+        .step-card.featured .step-badge { color: var(--dark-muted); }
+        .step-card.featured h3 { color: #fff; }
+        .step-card.featured .step-detail { color: var(--dark-muted); }
+        .step-card.featured .step-icon-wrap {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 4px 20px rgba(226,101,62,0.45);
+        }
+        .step-card.featured .step-icon-wrap svg { stroke: #fff; }
+        .step-card.featured .live-tag {
+            display: inline-block;
+            background: var(--success);
+            color: #fff;
+            font-size: 0.7rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            margin-top: 1rem;
         }
         .step-connector {
             flex-shrink: 0;
@@ -841,7 +857,7 @@
 
         <div class="steps-timeline reveal">
             <!-- Step 1 -->
-            <div class="step-card active">
+            <div class="step-card">
                 <span class="step-badge">Step 01</span>
                 <div class="step-icon-wrap">
                     <svg width="26" height="26" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -867,13 +883,14 @@
             <div class="step-connector"><span class="step-connector-arrow">›</span></div>
 
             <!-- Step 3 -->
-            <div class="step-card">
+            <div class="step-card featured">
                 <span class="step-badge">Step 03</span>
                 <div class="step-icon-wrap">
-                    <svg width="26" height="26" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                    <svg width="26" height="26" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
                 </div>
                 <h3>You Go Live</h3>
                 <div class="step-detail">Happy with it? We connect it to your domain and you're live. Free hosting, SSL included — everything set up and ready to bring in customers.</div>
+                <span class="live-tag">🟢 You're Live</span>
             </div>
         </div>
     </div>
@@ -1144,14 +1161,6 @@
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             document.querySelector('.nav-links').classList.remove('open');
-        });
-    });
-
-    // ── Interactive steps ──
-    document.querySelectorAll('.step-card').forEach(card => {
-        card.addEventListener('click', () => {
-            document.querySelectorAll('.step-card').forEach(c => c.classList.remove('active'));
-            card.classList.add('active');
         });
     });
 
