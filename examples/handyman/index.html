@@ -4,23 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fix It Right — Your Local Handyman in Leeds</title>
+    <title>Handyman Harry — Your Local Handyman in Leeds</title>
     <meta name="description" content="Reliable handyman services in Leeds. No job too small. Flat-pack, shelving, painting, tiling, repairs and more.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #FFFFFF;
-            --bg-off: #F1F5F9;
-            --blue: #1E5FA8;
-            --blue-dark: #174B88;
-            --blue-light: rgba(30,95,168,0.06);
-            --ink: #0F172A;
-            --muted: #64748B;
-            --border: #E2E8F0;
-            --orange: #F97316;
-            --green: #16A34A;
+            --bg:#FFFFFF;
+            --bg-off:#F1F5F9;
+            --blue:#1E5FA8;
+            --blue-dark:#174B88;
+            --blue-light:rgba(30,95,168,0.06);
+            --ink:#0F172A;
+            --muted:#64748B;
+            --border:#E2E8F0;
+            --green:#16A34A;
         }
         *{margin:0;padding:0;box-sizing:border-box}
         html{scroll-behavior:smooth}
@@ -35,7 +34,6 @@
     .example-banner{background:var(--blue);color:#fff;text-align:center;padding:.55rem 1rem;font-size:.8rem;font-weight:600;position:relative;z-index:1001}
     .example-banner a{color:#fff;font-weight:700;text-decoration:underline}
 
-    /* ── NAV ── */
     nav{position:fixed;top:0;width:100%;z-index:1000;padding:.9rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
     .logo{font-size:1.3rem;font-weight:800;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:.5rem}
     .logo-icon{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center}
@@ -49,7 +47,6 @@
     .burger{display:none;background:none;border:none;cursor:pointer;padding:.4rem}
     .burger span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px}
 
-    /* ── HERO ── */
     .hero{padding:9rem 2rem 5rem;position:relative;overflow:hidden}
     .hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:center}
     .hero-text h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:1rem}
@@ -67,14 +64,12 @@
     .hero-visual{background:var(--bg-off);border-radius:16px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem;border:1px solid var(--border);position:relative;overflow:hidden}
     .hero-visual::before{content:'';position:absolute;top:-40%;right:-40%;width:80%;height:80%;background:radial-gradient(circle,var(--blue-light),transparent);border-radius:50%}
 
-    /* ── SECTIONS ── */
     section{padding:5rem 2rem}
     .container{max-width:1100px;margin:0 auto}
     .tag{display:inline-block;background:var(--blue-light);color:var(--blue);font-size:.75rem;font-weight:700;padding:.35rem .8rem;border-radius:6px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
     .stitle{font-size:clamp(1.7rem,3vw,2.4rem);font-weight:800;line-height:1.15;letter-spacing:-.02em;margin-bottom:.6rem}
     .ssub{color:var(--muted);font-size:.95rem;max-width:480px;margin-bottom:2.5rem}
 
-    /* ── SERVICES ── */
     .services{background:var(--bg-off)}
     .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
     .svc-card{background:var(--bg);border-radius:12px;padding:1.8rem;border:1px solid var(--border);transition:all .3s;position:relative;overflow:hidden}
@@ -84,19 +79,17 @@
     .svc-card h3{font-size:.95rem;font-weight:700;margin-bottom:.3rem}
     .svc-card p{color:var(--muted);font-size:.85rem;line-height:1.5}
 
-    /* ── TRUST ── */
     .trust{background:var(--blue);color:#fff;text-align:center;padding:4rem 2rem}
     .trust-grid{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;margin-top:2rem}
     .trust-item .num{font-size:2.8rem;font-weight:800;line-height:1}
     .trust-item .label{font-size:.8rem;opacity:.7;text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem}
 
-    /* ── AREAS ── */
+    /* ── AREAS: clean two-column list with check marks ── */
     .areas{background:var(--bg-off)}
-    .area-tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
-    .area-tag{background:var(--bg);border:1px solid var(--border);border-radius:100px;padding:.5rem 1.2rem;font-size:.85rem;font-weight:600;color:var(--ink);transition:all .2s}
-    .area-tag:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .areas-columns{display:grid;grid-template-columns:1fr 1fr;gap:0 3rem;max-width:500px}
+    .areas-columns li{list-style:none;padding:.6rem 0;border-bottom:1px solid var(--border);font-size:.92rem;font-weight:600;display:flex;align-items:center;gap:.5rem;color:var(--ink)}
+    .areas-columns li svg{flex-shrink:0;color:var(--blue)}
 
-    /* ── CTA ── */
     .cta{text-align:center;background:var(--bg)}
     .cta .stitle span{color:var(--blue)}
     .cta-cards{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem}
@@ -108,7 +101,6 @@
     .cta-card a{color:var(--blue);text-decoration:none;font-weight:700}
     .cta-card a:hover{text-decoration:underline}
 
-    /* ── FOOTER ── */
     footer{background:var(--ink);color:rgba(255,255,255,.4);padding:2.5rem 2rem;text-align:center;font-size:.82rem}
     footer .fl{font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:.4rem}
     footer .fl span{color:var(--blue)}
@@ -130,6 +122,7 @@
         .hero-btns{flex-direction:column;align-items:center}
         .btn{width:100%;justify-content:center;max-width:300px}
         .trust{padding:3rem 1.2rem}
+        .areas-columns{grid-template-columns:1fr}
     }
     @media(max-width:500px){
         .svc-grid{grid-template-columns:1fr}
@@ -147,7 +140,7 @@
 <nav>
     <a href="#" class="logo">
         <div class="logo-icon"><svg fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
-        Fix It <span>Right</span>
+        Handyman <span>Harry</span>
     </a>
     <ul class="nav-links">
         <li><a href="#services">Services</a></li>
@@ -169,9 +162,9 @@
                     Get a Free Quote
                     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h10M10 7l5 5-5 5"/></svg>
                 </a>
-                <a href="tel:07712345678" class="btn btn-white">
+                <a href="tel:07746714631" class="btn btn-white">
                     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.11 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-                    07712 345 678
+                    07746 714 631
                 </a>
             </div>
             <div class="hero-badges">
@@ -217,20 +210,20 @@
         <div class="tag reveal">Coverage</div>
         <h2 class="stitle reveal">Areas we cover</h2>
         <p class="ssub reveal">Based in Leeds, covering the city and surrounding areas.</p>
-        <div class="area-tags reveal d1">
-            <span class="area-tag">Leeds City Centre</span>
-            <span class="area-tag">Headingley</span>
-            <span class="area-tag">Chapel Allerton</span>
-            <span class="area-tag">Roundhay</span>
-            <span class="area-tag">Horsforth</span>
-            <span class="area-tag">Garforth</span>
-            <span class="area-tag">Morley</span>
-            <span class="area-tag">Pudsey</span>
-            <span class="area-tag">Wetherby</span>
-            <span class="area-tag">Otley</span>
-            <span class="area-tag">Rothwell</span>
-            <span class="area-tag">Cross Gates</span>
-        </div>
+        <ul class="areas-columns reveal d1">
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4.75 5 10.5 2.5 8"/></svg> Leeds City Centre</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4.75 5 10.5 2.5 8"/></svg> Headingley</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4.75 5 10.5 2.5 8"/></svg> Chapel Allerton</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4.75 5 10.5 2.5 8"/></svg> Roundhay</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4.75 5 10.5 2.5 8"/></svg> Horsforth</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4.75 5 10.5 2.5 8"/></svg> Garforth</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4.75 5 10.5 2.5 8"/></svg> Morley</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4.75 5 10.5 2.5 8"/></svg> Pudsey</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4.75 5 10.5 2.5 8"/></svg> Wetherby</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4.75 5 10.5 2.5 8"/></svg> Otley</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4.75 5 10.5 2.5 8"/></svg> Rothwell</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4.75 5 10.5 2.5 8"/></svg> Cross Gates</li>
+        </ul>
     </div>
 </section>
 
@@ -243,12 +236,12 @@
             <div class="cta-card reveal">
                 <div class="icon"><svg width="22" height="22" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.11 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
                 <h3>Call or Text</h3>
-                <p><a href="tel:07712345678">07712 345 678</a></p>
+                <p><a href="tel:07746714631">07746 714 631</a></p>
             </div>
             <div class="cta-card reveal d1">
                 <div class="icon"><svg width="22" height="22" fill="none" stroke="var(--blue)" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg></div>
                 <h3>Email</h3>
-                <p><a href="mailto:info@fixitright.co.uk">info@fixitright.co.uk</a></p>
+                <p><a href="/cdn-cgi/l/email-protection#f1989f979eb197988998858398969985df929edf849a"><span class="__cf_email__" data-cfemail="4d24232b220d2b243524393f242a2539632e22633826">[email&#160;protected]</span></a></p>
             </div>
             <div class="cta-card reveal d2">
                 <div class="icon"><svg width="22" height="22" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
@@ -260,19 +253,17 @@
 </section>
 
 <footer>
-    <div class="fl">Fix It <span>Right</span></div>
+    <div class="fl">Handyman <span>Harry</span></div>
     <p>Your local handyman in Leeds. No job too small.</p>
-    <p style="margin-top:.6rem;font-size:.72rem;opacity:.5">&copy; 2026 Fix It Right. Website by <a href="https://landmepages.com">LandMePages</a></p>
+    <p style="margin-top:.6rem;font-size:.72rem;opacity:.5">&copy; 2026 Handyman Harry. Website by <a href="https://landmepages.com">LandMePages</a></p>
 </footer>
 
-<script>
-    window.addEventListener('scroll',()=>{document.querySelector('nav').classList.toggle('scrolled',window.scrollY>40)});
-    function rc(){document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-40)el.classList.add('visible')})}
-    const o=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting)i.target.classList.add('visible')})},{threshold:.05,rootMargin:'0px 0px -20px 0px'});
-    document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
-    window.addEventListener('load',rc);window.addEventListener('scroll',rc);rc();
-    document.querySelectorAll('.nav-links a').forEach(l=>{l.addEventListener('click',()=>{document.querySelector('.nav-links').classList.remove('open')})});
-</script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
-</body>
-</html>
+```
+window.addEventListener('scroll',()=>{document.querySelector('nav').classList.toggle('scrolled',window.scrollY>40)});
+function rc(){document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-40)el.classList.add('visible')})}
+const o=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting)i.target.classList.add('visible')})},{threshold:.05,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
+window.addEven
+```
