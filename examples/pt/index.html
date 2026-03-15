@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joe Morrison PT — Personal Training in Manchester</title>
+    <meta name="description" content="Transform your body with Manchester's top-rated personal trainer. 1-to-1 coaching, online plans, and group sessions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --bg:#09090B;
+            --bg2:#111113;
+            --bg3:#18181B;
+            --neon:#AAFF00;
+            --neon-dim:rgba(170,255,0,.08);
+            --neon-mid:rgba(170,255,0,.2);
+            --text:#FAFAFA;
+            --text-dim:#71717A;
+            --border:rgba(255,255,255,.07);
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;overflow-x:hidden}
+        body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;max-width:100vw}
+
+    /* ── ANIMATIONS: completely different - scale + fade, horizontal slides ── */
+    @keyframes popIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+    @keyframes slideIn{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes slideInR{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes countUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(170,255,0,.4)}70%{box-shadow:0 0 0 12px rgba(170,255,0,0)}}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    .pop{opacity:0;transform:scale(.92);transition:all .6s cubic-bezier(.34,1.56,.64,1)}
+    .pop.visible{opacity:1;transform:scale(1)}
+    .sl{opacity:0;transform:translateX(-40px);transition:all .7s cubic-bezier(.22,1,.36,1)}
+    .sl.visible{opacity:1;transform:translateX(0)}
+    .sr{opacity:0;transform:translateX(40px);transition:all .7s cubic-bezier(.22,1,.36,1)}
+    .sr.visible{opacity:1;transform:translateX(0)}
+    .d1{transition-delay:.15s}.d2{transition-delay:.3s}.d3{transition-delay:.45s}
+
+    .example-banner{background:var(--neon);color:var(--bg);text-align:center;padding:.5rem 1rem;font-size:.8rem;font-weight:700;position:relative;z-index:1001}
+    .example-banner a{color:var(--bg);text-decoration:underline}
+
+    /* ── NAV: transparent, minimal ── */
+    nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(9,9,11,.7);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+    .logo{font-size:1.1rem;font-weight:800;color:var(--text);text-decoration:none;text-transform:uppercase;letter-spacing:.06em}
+    .logo span{color:var(--neon)}
+    .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+    .nav-links a{color:var(--text-dim);text-decoration:none;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;transition:color .2s}
+    .nav-links a:hover{color:var(--neon)}
+    .nav-cta a{background:var(--neon);color:var(--bg)!important;padding:.5rem 1.2rem;border-radius:6px;font-weight:700;transition:all .2s}
+    .nav-cta a:hover{transform:translateY(-1px);box-shadow:0 0 20px rgba(170,255,0,.3)}
+    .burger{display:none;background:none;border:none;cursor:pointer;padding:.4rem}
+    .burger span{display:block;width:22px;height:2px;background:var(--text);margin:5px 0}
+
+    /* ── HERO: full viewport, massive text, diagonal slash ── */
+    .hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2.5rem 4rem;position:relative;overflow:hidden}
+    .hero::after{content:'';position:absolute;top:-20%;right:-10%;width:60%;height:140%;background:linear-gradient(135deg,var(--neon-dim),transparent 60%);transform:skewX(-12deg);pointer-events:none}
+    .hero-content{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative;z-index:1}
+    .hero-left h1{font-size:clamp(3rem,7vw,5.5rem);font-weight:900;line-height:.95;text-transform:uppercase;letter-spacing:-.03em;margin-bottom:1.5rem}
+    .hero-left h1 span{display:block;color:var(--neon);-webkit-text-stroke:0}
+    .hero-left p{color:var(--text-dim);font-size:1rem;max-width:400px;margin-bottom:2rem}
+    .hero-btns{display:flex;gap:.8rem;flex-wrap:wrap}
+    .btn-neon{display:inline-flex;align-items:center;gap:.4rem;background:var(--neon);color:var(--bg);padding:.85rem 2rem;border-radius:8px;font-weight:700;font-size:.9rem;text-decoration:none;transition:all .25s;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:.04em}
+    .btn-neon:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(170,255,0,.3)}
+    .btn-dark{display:inline-flex;align-items:center;gap:.4rem;background:var(--bg3);color:var(--text);padding:.85rem 2rem;border-radius:8px;font-weight:700;font-size:.9rem;text-decoration:none;transition:all .25s;border:1px solid var(--border);text-transform:uppercase;letter-spacing:.04em}
+    .btn-dark:hover{background:var(--text);color:var(--bg);border-color:var(--text)}
+    .hero-right{display:flex;flex-direction:column;gap:1rem;align-items:flex-end}
+    .hero-stat{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.5rem 2rem;min-width:220px;text-align:center;transition:all .3s}
+    .hero-stat:hover{border-color:var(--neon-mid);background:var(--bg3)}
+    .hero-stat .big{font-size:2.5rem;font-weight:900;color:var(--neon);line-height:1}
+    .hero-stat .small{font-size:.78rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem}
+    .pulse-dot{width:8px;height:8px;background:var(--neon);border-radius:50%;display:inline-block;animation:pulse 2s infinite;margin-right:.4rem}
+
+    /* ── MARQUEE: scrolling text banner ── */
+    .marquee{background:var(--neon);color:var(--bg);padding:.7rem 0;overflow:hidden;white-space:nowrap}
+    .marquee-inner{display:inline-flex;animation:marquee 20s linear infinite}
+    .marquee-item{font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;padding:0 2rem}
+
+    /* ── SECTIONS ── */
+    section{padding:5.5rem 2.5rem}
+    .container{max-width:1100px;margin:0 auto}
+    .tag-neon{display:inline-block;background:var(--neon-dim);color:var(--neon);font-size:.72rem;font-weight:700;padding:.3rem .7rem;border-radius:4px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem}
+    .sec-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:1.1;margin-bottom:.6rem}
+    .sec-sub{color:var(--text-dim);font-size:.92rem;max-width:450px;margin-bottom:2.5rem}
+
+    /* ── SERVICES: horizontal scroll cards ── */
+    .services{background:var(--bg2);overflow:hidden}
+    .scroll-track{display:flex;gap:1.2rem;overflow-x:auto;padding-bottom:1rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .scroll-track::-webkit-scrollbar{display:none}
+    .svc-card{min-width:280px;background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:2rem;flex-shrink:0;scroll-snap-align:start;transition:all .3s;position:relative;overflow:hidden}
+    .svc-card:hover{border-color:var(--neon);transform:translateY(-4px)}
+    .svc-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--neon);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+    .svc-card:hover::after{transform:scaleX(1)}
+    .svc-card h3{font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin-bottom:.4rem}
+    .svc-card p{color:var(--text-dim);font-size:.85rem;margin-bottom:1rem}
+    .svc-price{color:var(--neon);font-size:1.4rem;font-weight:800}
+    .scroll-hint{color:var(--text-dim);font-size:.78rem;margin-top:1rem;text-align:right}
+
+    /* ── RESULTS: big number counters ── */
+    .results{background:var(--bg)}
+    .results-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;text-align:center}
+    .result-item{padding:2rem;background:var(--bg2);border-radius:14px;border:1px solid var(--border);transition:all .3s}
+    .result-item:hover{border-color:var(--neon-mid)}
+    .result-num{font-size:3rem;font-weight:900;color:var(--neon);line-height:1}
+    .result-label{font-size:.78rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;margin-top:.4rem}
+
+    /* ── ABOUT: side by side, image left ── */
+    .about{background:var(--bg2)}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+    .about-img{background:var(--bg3);border:1px solid var(--border);border-radius:16px;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:.8rem;position:relative;overflow:hidden}
+    .about-img::before{content:'';position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,var(--bg2),transparent)}
+    .about-text p{color:var(--text-dim);font-size:.92rem;margin-bottom:1rem}
+    .about-text strong{color:var(--text)}
+
+    /* ── TESTIMONIALS: horizontal scroll ── */
+    .testimonials{background:var(--bg)}
+    .test-track{display:flex;gap:1.2rem;overflow-x:auto;padding-bottom:1rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .test-track::-webkit-scrollbar{display:none}
+    .test-card{min-width:320px;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:2rem;flex-shrink:0;scroll-snap-align:start}
+    .test-card .stars{color:var(--neon);font-size:.9rem;margin-bottom:.6rem;letter-spacing:.1em}
+    .test-card .quote{color:var(--text-dim);font-size:.9rem;font-style:italic;margin-bottom:1rem;line-height:1.6}
+    .test-card .name{font-weight:700;font-size:.85rem}
+    .test-card .detail{color:var(--text-dim);font-size:.78rem}
+
+    /* ── CTA ── */
+    .cta{background:var(--bg2);text-align:center;position:relative;overflow:hidden;clip-path:inset(0)}
+    .cta::before{content:'';position:absolute;top:-50%;left:25%;width:50%;height:200%;background:radial-gradient(circle,var(--neon-dim),transparent 60%);pointer-events:none}
+    .cta h2{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;text-transform:uppercase;margin-bottom:.6rem;position:relative}
+    .cta h2 span{color:var(--neon)}
+    .cta p{color:var(--text-dim);font-size:.95rem;max-width:420px;margin:0 auto 2rem;position:relative}
+    .cta-methods{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;position:relative;margin-top:2rem}
+    .cta-method{text-align:center;min-width:160px}
+    .cta-method h3{font-size:.82rem;color:var(--neon);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem}
+    .cta-method p{color:var(--text-dim);font-size:.9rem}
+    .cta-method a{color:var(--text);text-decoration:none;transition:color .2s}
+    .cta-method a:hover{color:var(--neon)}
+
+    /* ── FOOTER ── */
+    footer{background:var(--bg);border-top:1px solid var(--border);padding:2rem 2.5rem;text-align:center}
+    footer .fl{font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem}
+    footer .fl span{color:var(--neon)}
+    footer p{font-size:.78rem;color:var(--text-dim)}
+    footer a{color:var(--neon);text-decoration:none}
+
+    @media(max-width:900px){
+        .hero-content{grid-template-columns:1fr;text-align:center}
+        .hero-left p{margin-left:auto;margin-right:auto}
+        .hero-btns{justify-content:center}
+        .hero-right{align-items:center;flex-direction:row;flex-wrap:wrap;justify-content:center}
+        .about-grid{grid-template-columns:1fr;gap:2rem}
+        .results-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:768px){
+        nav{padding:.9rem 1.2rem}
+        .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(9,9,11,.97);backdrop-filter:blur(20px);flex-direction:column;padding:1.5rem;gap:1rem;border-bottom:1px solid var(--border)}
+        .nav-links.open{display:flex}
+        .burger{display:block}
+        section{padding:3.5rem 1.2rem}
+        .hero{padding:7rem 1.2rem 3rem}
+        .hero-btns{flex-direction:column;align-items:center}
+        .btn-neon,.btn-dark{width:100%;justify-content:center;max-width:300px}
+    }
+</style>
+
+</head>
+<body>
+
+<div class="example-banner">
+    Example page built by <a href="https://landmepages.com">LandMePages</a> — Want one? <a href="https://landmepages.com/#contact">Get in touch</a>
+</div>
+
+<nav>
+    <a href="#" class="logo">Joe<span>.</span>PT</a>
+    <ul class="nav-links">
+        <li><a href="#services">Training</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#about">About</a></li>
+        <li class="nav-cta"><a href="#contact">Book a Session</a></li>
+    </ul>
+    <button class="burger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-left">
+            <h1 class="pop">Train<br><span>different.</span></h1>
+            <p class="sl d1">Personal training in Manchester. Build strength, lose fat, and feel confident — with a coach who actually gives a damn.</p>
+            <div class="hero-btns sl d2">
+                <a href="#contact" class="btn-neon"><span class="pulse-dot"></span> Book a Free Consult</a>
+                <a href="#services" class="btn-dark">See Packages</a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-stat pop d1">
+                <div class="big">150+</div>
+                <div class="small">Clients Trained</div>
+            </div>
+            <div class="hero-stat pop d2">
+                <div class="big">4.9★</div>
+                <div class="small">Google Rating</div>
+            </div>
+            <div class="hero-stat pop d3">
+                <div class="big">7yrs</div>
+                <div class="small">Experience</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="marquee">
+    <div class="marquee-inner">
+        <span class="marquee-item">Strength Training</span>
+        <span class="marquee-item">·</span>
+        <span class="marquee-item">Fat Loss</span>
+        <span class="marquee-item">·</span>
+        <span class="marquee-item">Nutrition Coaching</span>
+        <span class="marquee-item">·</span>
+        <span class="marquee-item">Online Plans</span>
+        <span class="marquee-item">·</span>
+        <span class="marquee-item">1-to-1 Sessions</span>
+        <span class="marquee-item">·</span>
+        <span class="marquee-item">Group Training</span>
+        <span class="marquee-item">·</span>
+        <span class="marquee-item">Strength Training</span>
+        <span class="marquee-item">·</span>
+        <span class="marquee-item">Fat Loss</span>
+        <span class="marquee-item">·</span>
+        <span class="marquee-item">Nutrition Coaching</span>
+        <span class="marquee-item">·</span>
+        <span class="marquee-item">Online Plans</span>
+        <span class="marquee-item">·</span>
+        <span class="marquee-item">1-to-1 Sessions</span>
+        <span class="marquee-item">·</span>
+        <span class="marquee-item">Group Training</span>
+        <span class="marquee-item">·</span>
+    </div>
+</div>
+
+<section class="services" id="services">
+    <div class="container">
+        <div class="tag-neon sl">Packages</div>
+        <h2 class="sec-title sl">How we train</h2>
+        <p class="sec-sub sl">Every plan is built around you. Your goals, your schedule, your life.</p>
+    </div>
+    <div style="max-width:1200px;margin:0 auto;padding:0 1rem">
+        <div class="scroll-track">
+            <div class="svc-card">
+                <h3>1-to-1 Training</h3>
+                <p>Fully personalised sessions in the gym. Technique coaching, progressive programming, and accountability every step of the way.</p>
+                <div class="svc-price">From £40/session</div>
+            </div>
+            <div class="svc-card">
+                <h3>Online Coaching</h3>
+                <p>Custom training plan and nutrition guidance delivered to your phone. Weekly check-ins and form reviews via video.</p>
+                <div class="svc-price">£120/month</div>
+            </div>
+            <div class="svc-card">
+                <h3>8-Week Kickstarter</h3>
+                <p>The full package. Training plan, nutrition plan, 2x sessions per week, and unlimited support for 8 weeks.</p>
+                <div class="svc-price">£499</div>
+            </div>
+            <div class="svc-card">
+                <h3>Group Sessions</h3>
+                <p>Small group training (max 6 people). High energy, great community, serious results. Mornings and evenings available.</p>
+                <div class="svc-price">£12/session</div>
+            </div>
+            <div class="svc-card">
+                <h3>Nutrition Only</h3>
+                <p>Personalised meal plan and macro targets based on your goals, lifestyle, and food preferences. Weekly adjustments.</p>
+                <div class="svc-price">£60/month</div>
+            </div>
+        </div>
+        <p class="scroll-hint">Scroll to see more →</p>
+    </div>
+</section>
+
+<section class="results" id="results">
+    <div class="container">
+        <div class="tag-neon pop">Results</div>
+        <h2 class="sec-title pop">Numbers don't lie</h2>
+        <p class="sec-sub pop">Real results from real people. No shortcuts, no gimmicks.</p>
+        <div class="results-grid">
+            <div class="result-item pop"><div class="result-num">150+</div><div class="result-label">Clients Coached</div></div>
+            <div class="result-item pop d1"><div class="result-num">2,400+</div><div class="result-label">Sessions Delivered</div></div>
+            <div class="result-item pop d2"><div class="result-num">98%</div><div class="result-label">Client Retention</div></div>
+            <div class="result-item pop d3"><div class="result-num">4.9★</div><div class="result-label">Average Rating</div></div>
+        </div>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-img sl">[ Joe's photo here ]</div>
+            <div>
+                <div class="tag-neon sr">About</div>
+                <h2 class="sec-title sr">More than<br>just a PT</h2>
+                <div class="about-text">
+                    <p class="sr d1"><strong>I'm Joe.</strong> I've been coaching people in Manchester for over 7 years. I got into this because I know what it's like to feel lost in the gym — no plan, no progress, no clue what you're doing.</p>
+                    <p class="sr d2">I specialise in strength training and body composition. Whether you're a complete beginner or you've been training for years and hit a wall, I'll build a programme that works for your life — not just your gym time.</p>
+                    <p class="sr d3"><strong>Level 3 PT · Precision Nutrition Certified · First Aid Trained</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials">
+    <div class="container">
+        <div class="tag-neon pop">Testimonials</div>
+        <h2 class="sec-title pop">What clients say</h2>
+        <p class="sec-sub pop">Don't take my word for it.</p>
+    </div>
+    <div style="max-width:1200px;margin:0 auto;padding:0 1rem">
+        <div class="test-track">
+            <div class="test-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"I'd tried every PT going and never stuck with any of them. Joe's the first one who actually listened to what I wanted and built something around my life. Down 14kg in 6 months."</p>
+                <p class="name">Sarah M.</p>
+                <p class="detail">Lost 14kg · 6 months</p>
+            </div>
+            <div class="test-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"Best money I've ever spent. I came in with zero gym experience and now I'm deadlifting more than my bodyweight. Joe makes you feel like you can actually do this."</p>
+                <p class="name">Tom R.</p>
+                <p class="detail">Complete beginner · 4 months</p>
+            </div>
+            <div class="test-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"The online coaching is brilliant. I travel for work constantly and Joe adjusts my plan every week based on what I've got access to. No excuses, just results."</p>
+                <p class="name">Rachel K.</p>
+                <p class="detail">Online coaching · 8 months</p>
+            </div>
+            <div class="test-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"Group sessions are class. Proper hard work but everyone's dead supportive. Best part of my week honestly."</p>
+                <p class="name">Dan P.</p>
+                <p class="detail">Group training · 1 year</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta" id="contact">
+    <div class="container">
+        <h2 class="pop">Ready to<br><span>train different?</span></h2>
+        <p class="pop d1">Book a free, no-obligation consultation. We'll talk about your goals, your experience, and what package fits you best.</p>
+        <a href="#" class="btn-neon pop d2" style="font-size:.95rem;padding:1rem 2.5rem"><span class="pulse-dot"></span> Book a Free Consult</a>
+        <div class="cta-methods pop d3">
+            <div class="cta-method">
+                <h3>Call / Text</h3>
+                <p><a href="tel:07746714631">07746 714 631</a></p>
+            </div>
+            <div class="cta-method">
+                <h3>Email</h3>
+                <p><a href="/cdn-cgi/l/email-protection#b9d3d8d2dcf9d3d8d2dcd4d6cbcbd0cad6d7c9cd97dad697ccd2"><span class="__cf_email__" data-cfemail="5e343f353b1e343f353b33312c2c372d31302e2a703d31702b35">[email&#160;protected]</span></a></p>
+            </div>
+            <div class="cta-method">
+                <h3>Instagram</h3>
+                <p><a href="#">@joe.pt</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="fl">Joe<span>.</span>PT</div>
+    <p>Personal Training · Manchester</p>
+    <p style="margin-top:.5rem;opacity:.4">&copy; 2026 Joe Morrison PT. Website by <a href="https://landmepages.com">LandMePages</a></p>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{document.querySelector('nav').classList.toggle('scrolled',window.scrollY>40)});
+function rc(){document.querySelectorAll('.pop,.sl,.sr').forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-30)el.classList.add('visible')})}
+const o=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting)i.target.classList.add('visible')})},{threshold:.05,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.pop,.sl,.sr').forEach(el=>o.observe(el));
+window.addEventListener('load',rc);
+</script>
