@@ -24,7 +24,6 @@
         html{scroll-behavior:smooth}
         body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
-```
     @keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
     @keyframes widthGrow{from{width:0}to{width:60px}}
     .reveal{opacity:0;transform:translateY(25px);transition:all .7s cubic-bezier(.22,1,.36,1)}
@@ -129,7 +128,6 @@
         .services-grid{grid-template-columns:1fr}
     }
 </style>
-```
 
 </head>
 <body>
@@ -277,12 +275,10 @@
     <p style="margin-top:.6rem;font-size:.72rem;opacity:.4">&copy; 2026 Sharp Cuts Barbers. Website by <a href="https://landmepages.com">LandMePages</a></p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-
-```
+<script>
 window.addEventListener('scroll',()=>{document.querySelector('nav').classList.toggle('scrolled',window.scrollY>40)});
 function rc(){document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-40)el.classList.add('visible')})}
 const o=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting)i.target.classList.add('visible')})},{threshold:.05,rootMargin:'0px 0px -20px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
-window.addEventL
-```
+window.addEventListener('load',rc);
+</script>
