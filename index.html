@@ -647,6 +647,62 @@
             font-size: 0.82rem; color: var(--muted);
         }
 
+        /* ── Our Work ── */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .work-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            display: flex; flex-direction: column;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .work-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+        }
+        .work-card.pro {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px var(--accent);
+        }
+        .work-card-body { padding: 1.8rem 2rem 1.2rem; flex-grow: 1; }
+        .work-tier-badge {
+            font-size: 0.72rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            padding: 3px 10px; border-radius: 100px;
+            display: inline-block; margin-bottom: 0.9rem;
+        }
+        .work-card.pro .work-tier-badge {
+            background: var(--accent-light); color: var(--accent);
+        }
+        .work-card.starter .work-tier-badge {
+            background: var(--section-alt); color: var(--muted);
+        }
+        .work-card h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.22rem; margin-bottom: 0.25rem;
+        }
+        .work-location { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.15rem; }
+        .work-trade { font-size: 0.88rem; color: var(--muted); }
+        .work-card-footer {
+            padding: 1rem 2rem 1.6rem;
+            border-top: 1px solid var(--border);
+        }
+        .work-card.pro .work-card-footer { border-color: rgba(226,101,62,0.15); }
+        .work-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            font-size: 0.9rem; font-weight: 600;
+            color: var(--accent); text-decoration: none;
+            transition: gap 0.2s ease;
+        }
+        .work-link:hover { gap: 0.65rem; }
+
         /* ── WhatsApp Floating Button ── */
         .whatsapp-float {
             position: fixed;
@@ -719,6 +775,7 @@
         <li><a href="#features">What You Get</a></li>
         <li><a href="#how">How It Works</a></li>
         <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#work">Our Work</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li class="nav-cta-wrap"><a href="#contact">Get Started</a></li>
     </ul>
@@ -1015,6 +1072,65 @@
                 </ul>
                 <a href="#contact" class="btn btn-primary">Get Started</a>
             </div>
+        </div>
+    </div>
+</section>
+
+<section id="work" style="background:var(--section-alt);">
+    <div class="container">
+        <p class="section-label reveal">Our Work</p>
+        <h2 class="section-title reveal">See what we build.</h2>
+        <p class="section-sub reveal">Every site is designed from scratch to match your business. No templates, no cookie-cutter designs.</p>
+        <div class="work-grid">
+
+            <div class="work-card pro reveal">
+                <div class="work-card-body">
+                    <div class="work-tier-badge">Professional Package</div>
+                    <h3>Sharp Cuts Barbers</h3>
+                    <p class="work-location">📍 Sheffield</p>
+                    <p class="work-trade">Barber Shop</p>
+                </div>
+                <div class="work-card-footer">
+                    <a href="/examples/barber" class="work-link">View Example <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7h8M7 3l4 4-4 4"/></svg></a>
+                </div>
+            </div>
+
+            <div class="work-card pro reveal d1">
+                <div class="work-card-body">
+                    <div class="work-tier-badge">Professional Package</div>
+                    <h3>Handyman Harry</h3>
+                    <p class="work-location">📍 Leeds</p>
+                    <p class="work-trade">Handyman Services</p>
+                </div>
+                <div class="work-card-footer">
+                    <a href="/examples/handyman" class="work-link">View Example <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7h8M7 3l4 4-4 4"/></svg></a>
+                </div>
+            </div>
+
+            <div class="work-card pro reveal d2">
+                <div class="work-card-body">
+                    <div class="work-tier-badge">Professional Package</div>
+                    <h3>Joe.PT</h3>
+                    <p class="work-location">📍 Manchester</p>
+                    <p class="work-trade">Personal Trainer</p>
+                </div>
+                <div class="work-card-footer">
+                    <a href="/examples/pt" class="work-link">View Example <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7h8M7 3l4 4-4 4"/></svg></a>
+                </div>
+            </div>
+
+            <div class="work-card starter reveal d3">
+                <div class="work-card-body">
+                    <div class="work-tier-badge">Starter Package</div>
+                    <h3>Paws &amp; Claws</h3>
+                    <p class="work-location">📍 Wakefield</p>
+                    <p class="work-trade">Dog Groomer</p>
+                </div>
+                <div class="work-card-footer">
+                    <a href="/examples/groomer" class="work-link">View Example <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7h8M7 3l4 4-4 4"/></svg></a>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
