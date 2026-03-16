@@ -160,15 +160,31 @@
         }
         .hero h1 em { font-style: italic; color: var(--accent); }
         .hero-sub {
-            font-size: 1.08rem; color: rgba(255,255,255,0.52);
-            max-width: 460px; margin-bottom: 2.5rem;
-            opacity: 0; animation: fadeUp 0.8s ease 0.5s forwards;
+            font-size: 1rem; color: rgba(255,255,255,0.45);
+            max-width: 420px; margin-bottom: 2.2rem;
+            opacity: 0; animation: fadeUp 0.8s ease 0.75s forwards;
             line-height: 1.7;
+        }
+        .hero-hook {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1.15rem, 2.5vw, 1.6rem);
+            color: rgba(255,255,255,0.88);
+            font-weight: 600; letter-spacing: -0.02em;
+            margin-bottom: 0.4rem;
+            opacity: 0; animation: fadeUp 0.8s ease 0.5s forwards;
+        }
+        .hero-hook em { font-style: italic; color: var(--accent); }
+        .hero-own {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1rem, 2vw, 1.28rem);
+            color: var(--accent); font-style: italic;
+            margin-bottom: 2rem;
+            opacity: 0; animation: fadeUp 0.8s ease 0.62s forwards;
         }
         .hero-actions {
             display: flex; gap: 0.8rem; flex-wrap: wrap;
             justify-content: center;
-            opacity: 0; animation: fadeUp 0.8s ease 0.7s forwards;
+            opacity: 0; animation: fadeUp 0.8s ease 0.9s forwards;
         }
         .btn {
             display: inline-flex; align-items: center; gap: 0.45rem;
@@ -194,10 +210,10 @@
             background: rgba(255,255,255,0.06);
         }
         .hero-trust {
-            margin-top: 3rem;
+            margin-top: 2.5rem;
             display: flex; align-items: center; gap: 0.55rem;
             flex-wrap: wrap; justify-content: center;
-            opacity: 0; animation: fadeUp 0.8s ease 0.9s forwards;
+            opacity: 0; animation: fadeUp 0.8s ease 1.05s forwards;
         }
         .trust-pill {
             display: inline-flex; align-items: center; gap: 0.4rem;
@@ -945,7 +961,9 @@
         Accepting new clients &nbsp;·&nbsp; Trusted by UK small businesses
     </div>
     <h1>Your competitors<br>are already online.<br><em>Are you?</em></h1>
-    <p class="hero-sub">Professional landing pages for UK trades &amp; small businesses. One payment from £149 — free hosting, zero monthly fees, yours forever.</p>
+    <p class="hero-hook">A landing page that actually <em>works</em> — without the big price tag.</p>
+    <p class="hero-own">You own everything.</p>
+    <p class="hero-sub">From £149 once. Free hosting, zero monthly fees, yours forever.</p>
     <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">
             Get Your Page — From £149
@@ -999,10 +1017,10 @@
 <!-- ════════ STATS BAR ════════ -->
 <div class="stats-bar">
     <div class="stats-bar-grid">
-        <div class="stats-bar-item reveal"><strong>£149</strong><span>Starting price</span></div>
+        <div class="stats-bar-item reveal"><strong data-target="149" data-prefix="£" data-suffix="">£149</strong><span>Starting price</span></div>
         <div class="stats-bar-item reveal d1"><strong>£0/mo</strong><span>Hosting fees — always</span></div>
-        <div class="stats-bar-item reveal d2"><strong>48hrs</strong><span>Average turnaround</span></div>
-        <div class="stats-bar-item reveal d3"><strong>100%</strong><span>Yours to keep</span></div>
+        <div class="stats-bar-item reveal d2"><strong data-target="48" data-prefix="" data-suffix="hrs">48hrs</strong><span>Average turnaround</span></div>
+        <div class="stats-bar-item reveal d3"><strong data-target="100" data-prefix="" data-suffix="%">100%</strong><span>Yours to keep</span></div>
     </div>
 </div>
 
@@ -1226,15 +1244,15 @@
 
         <div class="stats-grid">
             <div class="stat-card reveal">
-                <div class="stat-number" data-target="97">97%</div>
+                <div class="stat-number" data-target="97" data-suffix="%">97%</div>
                 <p>of people search online before choosing a local business — that's customers you're missing out on</p>
             </div>
             <div class="stat-card reveal d1">
-                <div class="stat-number" data-target="75">75%</div>
+                <div class="stat-number" data-target="75" data-suffix="%">75%</div>
                 <p>of consumers judge a company's credibility based on their website</p>
             </div>
             <div class="stat-card reveal d2">
-                <div class="stat-number" data-target="46">46%</div>
+                <div class="stat-number" data-target="46" data-suffix="%">46%</div>
                 <p>of all Google searches are looking for a local business just like yours</p>
             </div>
         </div>
@@ -1577,16 +1595,18 @@
             if (entry.isIntersecting && !entry.target.dataset.done) {
                 entry.target.dataset.done = '1';
                 const target = +entry.target.dataset.target;
+                const prefix = entry.target.dataset.prefix || '';
+                const suffix = entry.target.dataset.suffix !== undefined ? entry.target.dataset.suffix : '%';
                 let current = 0;
                 const step = target / 60;
                 const timer = setInterval(() => {
                     current = Math.min(current + step, target);
-                    entry.target.textContent = Math.floor(current) + '%';
+                    entry.target.textContent = prefix + Math.floor(current) + suffix;
                     if (current >= target) clearInterval(timer);
                 }, 18);
             }
         });
-    }, { threshold: 0.6 });
+    }, { threshold: 0.5 });
     document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
 
     // ── Sticky mobile CTA ──
